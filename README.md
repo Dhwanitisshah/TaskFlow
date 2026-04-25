@@ -24,11 +24,6 @@ TaskFlow is a full-stack task manager built with `Next.js`, `TypeScript`, `Tailw
 - Client-side and server-side validation
 - Local database storage in `.data/taskflow.db` by default
 
-## Live Site
-
-- Live demo: `Add your deployed URL here`
-- Repository: `https://github.com/Dhwanitisshah/TaskFlow`
-
 ## Getting Started
 
 ### Prerequisites
