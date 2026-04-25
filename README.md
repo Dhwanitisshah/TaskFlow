@@ -24,6 +24,11 @@ TaskFlow is a full-stack task manager built with `Next.js`, `TypeScript`, `Tailw
 - Client-side and server-side validation
 - Local database storage in `.data/taskflow.db` by default
 
+## Live Site
+
+- Live demo: `Add your deployed URL here`
+- Repository: `https://github.com/Dhwanitisshah/TaskFlow`
+
 ## Getting Started
 
 ### Prerequisites
@@ -78,6 +83,32 @@ Open `http://localhost:3000`.
 - User and task data are stored in a local SQLite file.
 - The database schema is created automatically on first request.
 - Existing MongoDB data is not migrated automatically.
+
+## Deployment
+
+### Recommended for the current app: Render with a persistent disk
+
+This project currently stores data in a local SQLite file. That means it works best on a platform where your app runs as a long-lived Node.js service and can keep a persistent filesystem path for `DATABASE_PATH`.
+
+Suggested setup:
+
+1. Push this repository to GitHub.
+2. Create a new Web Service on Render and connect the repo.
+3. Use:
+   - Build command: `npm install && npm run build`
+   - Start command: `npm start`
+4. Add environment variables:
+   - `DATABASE_PATH=/opt/render/project/src/.data/taskflow.db`
+   - `JWT_SECRET=your_production_secret`
+   - `NEXT_PUBLIC_APP_NAME=TaskFlow`
+5. Attach a persistent disk and mount it under `/opt/render/project/src/.data`.
+6. After deploy, replace the `Live demo` placeholder above with your public URL.
+
+### If you want Vercel later
+
+Vercel is a great fit for Next.js, but this app should not use the current local SQLite file setup there. Vercel Functions use a read-only filesystem except for temporary `/tmp` storage, so local database files are not a durable production database.
+
+To deploy on Vercel, first move persistence from local SQLite to a hosted database such as Postgres from a provider like Neon, Supabase, or another managed SQL service. After that, connect the GitHub repo to Vercel, add the environment variables, and deploy normally.
 
 ## Common Issues
 
